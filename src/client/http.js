@@ -52,6 +52,7 @@ class ApiClient {
   }
 
   async signTransactionFromToPK(pk, transaction){
+    transaction = await this.addRef(transaction);
     const privateKeySigner = this.getSigner(pk);
     const signedTransaction = await privateKeySigner.signTransaction(transaction);
     return signedTransaction;
