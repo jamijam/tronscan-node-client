@@ -46,6 +46,17 @@ class ApiClient {
     return (pk) => this.sendTransaction(pk, transaction);
   }
 
+  buildTransactionFromTo(from, to, amount) {
+    const transaction = buildTransferTransaction("TRX", from, to, amount);
+    return transaction;
+  }
+
+  signTransactionFromToPK(pk, transaction){
+    const privateKeySigner = this.getSigner(pk);
+    const signedTransaction = await privateKeySigner.signTransaction(transaction);
+    return signedTransaction;
+  }
+
   async addRef(transaction) {
 
     let latestBlock = await this.getLatestBlock();
