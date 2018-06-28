@@ -198,7 +198,7 @@ class ApiClient {
 	}
 
 	async getLatestBlock() {
-		let { data } = await xhr.post(`${this.apiUrl}/wallet/getnowblock`, {});
+		let { data } = await xhr.post(`${this.apiUrl}/api/block/latest`, {});
 		return data;
 	}
 
