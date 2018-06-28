@@ -92,7 +92,6 @@ function buildWitnessCreate(address, url) {
 function buildWitnessUpdate(address, url) {
   let contract = new WitnessUpdateContract();
   contract.setOwnerAddress(Uint8Array.from(decode58Check(address)));
-  console.log("SET RURL", url);
   contract.setUpdateUrl(encodeString(url));
 
   return buildTransferContract(
@@ -117,7 +116,7 @@ function buildVote(address, votes) {
 
   for (let address of Object.keys(votes)) {
     let vote = new VoteWitnessContract.Vote();
-    vote.setVoteAddress(Uint8Array.from(decode58Check(address)))
+    vote.setVoteAddress(Uint8Array.from(decode58Check(address)));
     let numberOfVotes = parseInt(votes[address]);
     if (isNaN(numberOfVotes) || numberOfVotes <= 0) {
       continue;
