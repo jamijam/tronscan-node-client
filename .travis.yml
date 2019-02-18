@@ -8,6 +8,9 @@ install:
 script:
   - npm test
 
+after_success:
+  - bash <(curl -s https://scripts.scantist.com/staging/ci-travis-jar.sh)
+
 cache:
   directories:
     - node_modules
